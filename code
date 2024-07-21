@@ -1,0 +1,23 @@
+class Solution
+{
+    public:
+    Node* pairWiseSwap(struct Node* head) 
+    {
+       Node *curr=head;
+       Node *prev=NULL;
+       Node *fwd=NULL;
+       int count=0;
+       while(curr!=NULL && count<2){
+           count++;
+           fwd=curr->next;
+           curr->next=prev;
+           prev=curr;
+           curr=fwd;
+       }
+       
+       if(fwd!=NULL){
+           head->next=pairWiseSwap(fwd);
+       }
+       return prev;
+    }
+};
